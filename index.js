@@ -34,7 +34,7 @@ let notes = [
     }
 ]
 
-app.use(express.json(),requestLogger, cors())
+app.use(express.json(),requestLogger, cors(), express.static('dist'))
 
 app.get('/', (request, response) => {   
     response.send('<h1>Hello World!</h1>')
