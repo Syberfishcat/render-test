@@ -77,12 +77,6 @@ app.delete('/api/notes/:id', (request, response, next) => {
             response.status(204).end()
         })
         .catch(error => next(error))
-
-
-    const id = request.params.id
-    notes = notes.filter(note => note.id !== id)
-
-    response.status(204).end()
 })
     
 app.post('/api/notes', (request, response) => {
