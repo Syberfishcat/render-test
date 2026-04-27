@@ -17,8 +17,12 @@ mongoose.connect(url, { family: 4 })
 // const url = `mongodb+srv://fullstack:${password}@cluster0.zsbfrws.mongodb.net/noteApp?retryWrites=true&w=majority&appName=Cluster0`
 
 const noteSchema = new mongoose.Schema({
-  content: String,
-  important: Boolean,
+  content: {
+    type: String,
+    minLength: 5,
+    required: true
+  },
+  important: Boolean
 })
 
 noteSchema.set('toJSON', {
