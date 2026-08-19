@@ -10,22 +10,17 @@ const api = supertest(app)
 
 beforeEach(async () => {
   await Note.deleteMany({})
-
-  let noteObject = new Note(helper.initialNotes[0])
-  await noteObject.save()
-
-  noteObject = new Note(helper.initialNotes[1])
-  await noteObject.save()
+  await Note.insertMany(helper.initialNotes)
 })
 
-test.only('notes are returned as json', async () => {
+test('notes are returned as json', async () => {
   await api
     .get('/api/notes')
     .expect(200)
     .expect('Content-Type', /application\/json/)
 })
 
-test.only('all notes are returned', async () => {
+test('all notes are returned', async () => {
   const response = await api.get('/api/notes')
 
   assert.strictEqual(response.body.length, helper.initialNotes.length)
